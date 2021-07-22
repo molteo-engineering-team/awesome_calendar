@@ -4,7 +4,7 @@ An easy to use and customizable calendar for Flutter.
 
 The calendar can be used with the provided AlertDialog or as a Widget embedded the way you want. It allows single, multi and range selection.
 
-![](https://github.com/molteo-engineering-team/awesome_calendar/tree/main/demo.gif)
+![](https://github.com/molteo-engineering-team/awesome_calendar/blob/main/demo.gif)
 
 ## Installation
 
