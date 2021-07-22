@@ -1,4 +1,4 @@
-## [1.0.1] - 22/07/2021
+## [1.0.2] - 22/07/2021
 
 * Edit readme
 * Fix dialog height issue
