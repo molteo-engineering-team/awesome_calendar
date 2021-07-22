@@ -39,10 +39,10 @@ class CalendarHelper {
     return getLastDayOfMonth(DateTime.now());
   }
 
-  static DateTime addMonths(DateTime fromMonth, int months) {
-    DateTime firstDayOfCurrentMonth = fromMonth;
+  static DateTime? addMonths(DateTime? fromMonth, int months) {
+    DateTime? firstDayOfCurrentMonth = fromMonth;
     for (int i = 0; i < months; i++) {
-      firstDayOfCurrentMonth = getLastDayOfMonth(firstDayOfCurrentMonth)
+      firstDayOfCurrentMonth = getLastDayOfMonth(firstDayOfCurrentMonth!)
           .add(const Duration(days: 1));
     }
 

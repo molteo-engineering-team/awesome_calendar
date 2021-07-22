@@ -5,7 +5,7 @@ class DefaultDayTileBuilder extends DayTileBuilder {
 
   @override
   Widget build(BuildContext context, DateTime date,
-      void Function(DateTime datetime) onTap) {
+      void Function(DateTime datetime)? onTap) {
     return DefaultDayTile(
       date: date,
       onTap: onTap,

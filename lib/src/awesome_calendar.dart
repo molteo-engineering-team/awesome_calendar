@@ -2,7 +2,7 @@ part of awesome_calendar;
 
 class AwesomeCalendar extends StatefulWidget {
   const AwesomeCalendar({
-    Key key,
+    Key? key,
     this.startDate,
     this.endDate,
     this.dayTileBuilder,
@@ -15,35 +15,35 @@ class AwesomeCalendar extends StatefulWidget {
   }) : super(key: key);
 
   /// First date of the calendar
-  final DateTime startDate;
+  final DateTime? startDate;
 
   /// Last date of the calendar
-  final DateTime endDate;
+  final DateTime? endDate;
 
   /// The selection mode: [SINGLE, MULTI, RANGE]
   final SelectionMode selectionMode;
 
   /// The builder to create a day widget
-  final DayTileBuilder dayTileBuilder;
+  final DayTileBuilder? dayTileBuilder;
 
   /// The weekdays widget to show above the calendar
-  final Widget weekdayLabels;
+  final Widget? weekdayLabels;
 
   /// The function when the user clicks on a day
-  final void Function(DateTime datetime) onTap;
+  final void Function(DateTime datetime)? onTap;
 
   /// Function trigered when the current page of the calendar changes
-  final void Function(DateTime pageStartDate, DateTime pageEndDate)
+  final void Function(DateTime pageStartDate, DateTime pageEndDate)?
       onPageSelected;
 
   /// The selected date in case of SINGLE selection mode
-  final DateTime selectedSingleDate;
+  final DateTime? selectedSingleDate;
 
-  /// The list of seleted dates in case of MULTI or RANGE selection mode
-  final List<DateTime> selectedDates;
+  /// The list of selected dates in case of MULTI or RANGE selection mode
+  final List<DateTime>? selectedDates;
 
   /// Function to get the state of awesome_calendar
-  static AwesomeCalendarState of(BuildContext context) =>
+  static AwesomeCalendarState? of(BuildContext context) =>
       context.findAncestorStateOfType<AwesomeCalendarState>();
 
   @override
@@ -54,19 +54,22 @@ class AwesomeCalendar extends StatefulWidget {
 }
 
 class AwesomeCalendarState extends State<AwesomeCalendar> {
-  AwesomeCalendarState({this.selectedSingleDate, this.selectedDates});
+  AwesomeCalendarState({
+    this.selectedSingleDate,
+    this.selectedDates,
+  });
 
-  DateTime selectedSingleDate;
-  List<DateTime> selectedDates;
-  DateTime startDate;
-  DateTime endDate;
-  DayTileBuilder dayTileBuilder;
-  Widget weekdayLabels;
-  int pagesCount;
+  DateTime? selectedSingleDate;
+  List<DateTime>? selectedDates;
+  late DateTime startDate;
+  late DateTime endDate;
+  late DayTileBuilder dayTileBuilder;
+  late Widget weekdayLabels;
+  late int pagesCount;
   double dayTileHeight = 40.0;
   double dayLabelHeight = 20.0;
-  double widgetHeight;
-  PageController controller;
+  late double widgetHeight;
+  late PageController controller;
 
   @override
   void initState() {
@@ -80,8 +83,8 @@ class AwesomeCalendarState extends State<AwesomeCalendar> {
     }
     dayTileBuilder = widget.dayTileBuilder ?? DefaultDayTileBuilder();
     weekdayLabels = widget.weekdayLabels ?? DefaultWeekdayLabels();
-    selectedDates = widget.selectedDates ?? <DateTime>[];
     selectedSingleDate = widget.selectedSingleDate ?? startDate;
+    selectedDates ??= <DateTime>[];
     pagesCount =
         CalendarHelper.calculateMonthsDifference(startDate, endDate) + 1;
     final int maxWeeksNumber =
@@ -93,7 +96,7 @@ class AwesomeCalendarState extends State<AwesomeCalendar> {
   Widget build(BuildContext context) {
     controller = PageController(
       initialPage:
-          selectedSingleDate != null ? _getPageForDate(selectedSingleDate) : 0,
+          selectedSingleDate != null ? _getPageForDate(selectedSingleDate!) : 0,
     );
     return Container(
       height: widgetHeight,
@@ -113,7 +116,7 @@ class AwesomeCalendarState extends State<AwesomeCalendar> {
         onPageChanged: (int page) {
           if (widget.onPageSelected != null) {
             final DateRange pageDateRange = _calculatePageDateRange(page);
-            widget.onPageSelected(
+            widget.onPageSelected!(
               pageDateRange.startDate,
               pageDateRange.endDate,
             );
@@ -151,12 +154,10 @@ class AwesomeCalendarState extends State<AwesomeCalendar> {
   /// If a given date is selected in the calendar
   bool isDateSelected(DateTime date) {
     if (widget.selectionMode == SelectionMode.SINGLE) {
-      return CalendarHelper.isSameDay(selectedSingleDate, date);
+      return CalendarHelper.isSameDay(selectedSingleDate!, date);
     } else {
-      final DateTime matchedSelectedDate = selectedDates.firstWhere(
-          (DateTime d) => CalendarHelper.isSameDay(d, date),
-          orElse: () => null);
-
+      final DateTime? matchedSelectedDate = selectedDates!
+          .firstWhereOrNull((DateTime d) => CalendarHelper.isSameDay(d, date));
       return matchedSelectedDate != null;
     }
   }
@@ -169,8 +170,8 @@ class AwesomeCalendarState extends State<AwesomeCalendar> {
 
   /// Get the first and last date of a page
   DateRange _calculatePageDateRange(int pagePosition) {
-    DateTime pageStartDate;
-    DateTime pageEndDate;
+    late DateTime pageStartDate;
+    late DateTime pageEndDate;
 
     if (pagePosition == 0) {
       pageStartDate = startDate;
@@ -186,7 +187,7 @@ class AwesomeCalendarState extends State<AwesomeCalendar> {
       pageEndDate = endDate;
     } else {
       final DateTime firstDateOfCurrentMonth =
-          CalendarHelper.addMonths(startDate, pagePosition);
+          CalendarHelper.addMonths(startDate, pagePosition)!;
       pageStartDate = firstDateOfCurrentMonth;
       pageEndDate = CalendarHelper.getLastDayOfMonth(firstDateOfCurrentMonth);
     }
@@ -196,38 +197,38 @@ class AwesomeCalendarState extends State<AwesomeCalendar> {
 
   /// Select the dates for range selection mode
   void _setRangeSelectedDate(DateTime date) {
-    switch (selectedDates.length) {
+    switch (selectedDates!.length) {
       case 0:
-        selectedDates.add(date);
+        selectedDates!.add(date);
         break;
       case 1:
         DateTime firstDate;
         DateTime lastDate;
-        selectedDates.add(date);
-        if (selectedDates[0].isBefore(date)) {
-          firstDate = selectedDates[0];
+        selectedDates!.add(date);
+        if (selectedDates![0].isBefore(date)) {
+          firstDate = selectedDates![0];
           lastDate = date;
         } else {
           firstDate = date;
-          lastDate = selectedDates[0];
+          lastDate = selectedDates![0];
         }
         for (int i = 1; i < lastDate.difference(firstDate).inDays; i++) {
-          selectedDates.add(firstDate.add(Duration(days: i)));
+          selectedDates!.add(firstDate.add(Duration(days: i)));
         }
         break;
       default:
-        selectedDates.clear();
-        selectedDates.add(date);
+        selectedDates!.clear();
+        selectedDates!.add(date);
         break;
     }
   }
 
   /// Toggle a date in multi selection mode
   void _setMultiSelectedDate(DateTime date) {
-    if (selectedDates.contains(date)) {
-      selectedDates.remove(date);
+    if (selectedDates!.contains(date)) {
+      selectedDates!.remove(date);
     } else {
-      selectedDates.add(date);
+      selectedDates!.add(date);
     }
   }
 }

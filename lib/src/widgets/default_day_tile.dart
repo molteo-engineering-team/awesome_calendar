@@ -2,7 +2,7 @@ part of awesome_calendar;
 
 class DefaultDayTile extends StatelessWidget {
   const DefaultDayTile({
-    @required this.date,
+    required this.date,
     this.onTap,
     this.currentDayBorderColor,
     this.selectedDayColor,
@@ -12,21 +12,21 @@ class DefaultDayTile extends StatelessWidget {
   final DateTime date;
 
   /// Function to call when the day is clicked
-  final void Function(DateTime datetime) onTap;
+  final void Function(DateTime datetime)? onTap;
 
   /// Background color of the day when it is selected
-  final Color selectedDayColor;
+  final Color? selectedDayColor;
 
   /// Border color of the current day (DateTime.now())
-  final Color currentDayBorderColor;
+  final Color? currentDayBorderColor;
 
   @override
   Widget build(BuildContext context) {
     final bool isToday = CalendarHelper.isToday(date);
 
-    final bool daySelected = AwesomeCalendar.of(context).isDateSelected(date);
+    final bool daySelected = AwesomeCalendar.of(context)!.isDateSelected(date);
 
-    BoxDecoration boxDecoration;
+    BoxDecoration? boxDecoration;
     if (daySelected) {
       boxDecoration = BoxDecoration(
         color: selectedDayColor ?? Theme.of(context).accentColor,
@@ -54,7 +54,7 @@ class DefaultDayTile extends StatelessWidget {
               style: TextStyle(
                 color: daySelected
                     ? Colors.white
-                    : Theme.of(context).textTheme.bodyText1.color,
+                    : Theme.of(context).textTheme.bodyText1!.color,
                 fontSize: 14,
               ),
             ),
@@ -69,10 +69,10 @@ class DefaultDayTile extends StatelessWidget {
   void handleTap(BuildContext context) {
     final DateTime day = DateTime(date.year, date.month, date.day, 12, 00);
     if (onTap != null) {
-      onTap(day);
+      onTap!(day);
     }
 
-    AwesomeCalendar.of(context).setSelectedDate(day);
-    AwesomeCalendar.of(context).setCurrentDate(day);
+    AwesomeCalendar.of(context)!.setSelectedDate(day);
+    AwesomeCalendar.of(context)!.setCurrentDate(day);
   }
 }

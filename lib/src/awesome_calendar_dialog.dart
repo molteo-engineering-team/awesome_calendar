@@ -15,10 +15,10 @@ class AwesomeCalendarDialog extends StatefulWidget {
   });
 
   /// Initial date of the date picker, used to know which month needs to be shown
-  final DateTime initialDate;
+  final DateTime? initialDate;
 
   /// The current selected dates
-  final List<DateTime> selectedDates;
+  final List<DateTime>? selectedDates;
 
   /// It will add a toggle to activate/deactivate the range selection mode
   final bool canToggleRangeSelection;
@@ -37,10 +37,10 @@ class AwesomeCalendarDialog extends StatefulWidget {
   final String cancelBtnText;
 
   /// The builder to create a day widget
-  final DayTileBuilder dayTileBuilder;
+  final DayTileBuilder? dayTileBuilder;
 
   /// The weekdays widget to show above the calendar
-  final Widget weekdayLabels;
+  final Widget? weekdayLabels;
 
   @override
   _AwesomeCalendarDialogState createState() => _AwesomeCalendarDialogState(
@@ -54,13 +54,13 @@ class _AwesomeCalendarDialogState extends State<AwesomeCalendarDialog> {
   _AwesomeCalendarDialogState({
     this.currentMonth,
     this.selectedDates,
-    this.selectionMode,
+    this.selectionMode = SelectionMode.SINGLE,
   }) {
     currentMonth ??= DateTime.now();
   }
 
-  List<DateTime> selectedDates;
-  DateTime currentMonth;
+  List<DateTime>? selectedDates;
+  DateTime? currentMonth;
   SelectionMode selectionMode;
   GlobalKey<AwesomeCalendarState> calendarStateKey =
       GlobalKey<AwesomeCalendarState>();
@@ -82,16 +82,16 @@ class _AwesomeCalendarDialogState extends State<AwesomeCalendarDialog> {
                   IconButton(
                     icon: const Icon(Icons.keyboard_arrow_left),
                     onPressed: () {
-                      calendarStateKey.currentState.setCurrentDate(
-                          DateTime(currentMonth.year, currentMonth.month - 1));
+                      calendarStateKey.currentState!.setCurrentDate(DateTime(
+                          currentMonth!.year, currentMonth!.month - 1));
                     },
                   ),
-                  Text(DateFormat('yMMMM').format(currentMonth)),
+                  Text(DateFormat('yMMMM').format(currentMonth!)),
                   IconButton(
                     icon: const Icon(Icons.keyboard_arrow_right),
                     onPressed: () {
-                      calendarStateKey.currentState.setCurrentDate(
-                          DateTime(currentMonth.year, currentMonth.month + 1));
+                      calendarStateKey.currentState!.setCurrentDate(DateTime(
+                          currentMonth!.year, currentMonth!.month + 1));
                     },
                   ),
                 ],
@@ -106,7 +106,7 @@ class _AwesomeCalendarDialogState extends State<AwesomeCalendarDialog> {
                 selectedSingleDate: currentMonth,
                 selectedDates: selectedDates,
                 selectionMode: selectionMode,
-                onPageSelected: (DateTime start, DateTime end) {
+                onPageSelected: (DateTime? start, DateTime? end) {
                   setState(() {
                     currentMonth = start;
                   });
@@ -129,7 +129,7 @@ class _AwesomeCalendarDialogState extends State<AwesomeCalendarDialog> {
                       selectionMode =
                           value ? SelectionMode.RANGE : SelectionMode.MULTI;
                       selectedDates = <DateTime>[];
-                      calendarStateKey.currentState.selectedDates =
+                      calendarStateKey.currentState!.selectedDates =
                           selectedDates;
                     });
                   },
@@ -146,11 +146,12 @@ class _AwesomeCalendarDialogState extends State<AwesomeCalendarDialog> {
         TextButton(
           child: Text(widget.confirmBtnText),
           onPressed: () {
-            final AwesomeCalendarState calendar = calendarStateKey.currentState;
+            final AwesomeCalendarState? calendar =
+                calendarStateKey.currentState;
             Navigator.of(context).pop(
               widget.selectionMode == SelectionMode.SINGLE
-                  ? calendar.selectedSingleDate
-                  : calendar.selectedDates,
+                  ? calendar!.selectedSingleDate
+                  : calendar!.selectedDates,
             );
           },
         ),

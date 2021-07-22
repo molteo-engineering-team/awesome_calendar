@@ -2,11 +2,11 @@ part of awesome_calendar;
 
 class AwesomeCalendarPage extends StatelessWidget {
   const AwesomeCalendarPage({
-    @required this.pageStartDate,
-    @required this.pageEndDate,
-    @required this.weekdayLabels,
-    @required this.dayTileBuilder,
-    @required this.onTap,
+    required this.pageStartDate,
+    required this.pageEndDate,
+    required this.weekdayLabels,
+    required this.dayTileBuilder,
+    this.onTap,
   });
 
   /// The maximum number of rows that we can have on a month
@@ -25,7 +25,7 @@ class AwesomeCalendarPage extends StatelessWidget {
   final DayTileBuilder dayTileBuilder;
 
   /// The function when the user clicks on a day
-  final void Function(DateTime datetime) onTap;
+  final void Function(DateTime datetime)? onTap;
 
   @override
   Widget build(BuildContext context) {
