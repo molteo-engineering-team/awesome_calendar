@@ -1,7 +1,6 @@
 name: awesome_calendar
 description: An easy to use and customizable calendar for Flutter
 version: 1.0.0
-author: Molteo Team
 homepage: https://github.com/molteo-engineering-team/awesome_calendar
 
 environment:
