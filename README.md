@@ -4,7 +4,7 @@ An easy to use and customizable calendar for Flutter.
 
 The calendar can be used with the provided AlertDialog or as a Widget embedded the way you want. It allows single, multi and range selection.
 
-![](demo.gif)
+![](https://github.com/molteo-engineering-team/awesome_calendar/tree/main/demo.gif)
 
 ## Installation
 
@@ -28,6 +28,8 @@ final List<DateTime>? picked = await showDialog<List<DateTime>>(
 ```
 
 Check out [examples](https://github.com/molteo-engineering-team/awesome_calendar/tree/main/example/lib/main.dart) to see more usage samples
+
+The dates are translated automatically according to your `Intl.defaultLocale` value, the other string values can be overriden in the constructor.
 
 ## Found this project useful? ❤️
 
