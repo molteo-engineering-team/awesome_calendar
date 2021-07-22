@@ -51,51 +51,53 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(singleSelect?.toString() ?? ''),
-            ElevatedButton(
-              onPressed: () => singleSelectPicker(),
-              child: const Text('Single select picker'),
-            ),
-            const Padding(padding: EdgeInsets.only(top: 20)),
-            Text(multiSelect?.toString() ?? ''),
-            ElevatedButton(
-              onPressed: () => multiSelectPicker(),
-              child: const Text('Multi select picker'),
-            ),
-            const Padding(padding: EdgeInsets.only(top: 20)),
-            Text(rangeSelect?.toString() ?? ''),
-            ElevatedButton(
-              onPressed: () => rangeSelectPicker(),
-              child: const Text('Range select picker'),
-            ),
-            const Padding(padding: EdgeInsets.only(top: 20)),
-            Text(multiOrRangeSelect?.toString() ?? ''),
-            ElevatedButton(
-              onPressed: () => multiOrRangeSelectPicker(),
-              child: const Text('Range or Multi select picker'),
-            ),
-            const Padding(padding: EdgeInsets.only(top: 20)),
-            const Text('Embedded calendar (single select):'),
-            Text(embeddedCalendar.toString()),
-            AwesomeCalendar(
-              selectedSingleDate: embeddedCalendar,
-              onTap: (DateTime date) {
-                setState(() {
-                  embeddedCalendar = date;
-                });
-              },
-            ),
-            const Padding(padding: EdgeInsets.only(top: 20)),
-            const Text('Custom colors Embedded calendar (single select):'),
-            AwesomeCalendar(
-              selectedSingleDate: DateTime.now(),
-              dayTileBuilder: CustomDayTileBuilder(),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(singleSelect?.toString() ?? ''),
+              ElevatedButton(
+                onPressed: () => singleSelectPicker(),
+                child: const Text('Single select picker'),
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              Text(multiSelect?.toString() ?? ''),
+              ElevatedButton(
+                onPressed: () => multiSelectPicker(),
+                child: const Text('Multi select picker'),
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              Text(rangeSelect?.toString() ?? ''),
+              ElevatedButton(
+                onPressed: () => rangeSelectPicker(),
+                child: const Text('Range select picker'),
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              Text(multiOrRangeSelect?.toString() ?? ''),
+              ElevatedButton(
+                onPressed: () => multiOrRangeSelectPicker(),
+                child: const Text('Range or Multi select picker'),
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              const Text('Embedded calendar (single select):'),
+              Text(embeddedCalendar.toString()),
+              AwesomeCalendar(
+                selectedSingleDate: embeddedCalendar,
+                onTap: (DateTime date) {
+                  setState(() {
+                    embeddedCalendar = date;
+                  });
+                },
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              const Text('Custom colors Embedded calendar (single select):'),
+              AwesomeCalendar(
+                selectedSingleDate: DateTime.now(),
+                dayTileBuilder: CustomDayTileBuilder(),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -123,7 +125,6 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (BuildContext context) {
         return const AwesomeCalendarDialog(
           selectionMode: SelectionMode.MULTI,
-          canToggleRangeSelection: false,
         );
       },
     );
@@ -140,7 +141,6 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (BuildContext context) {
         return const AwesomeCalendarDialog(
           selectionMode: SelectionMode.RANGE,
-          canToggleRangeSelection: false,
         );
       },
     );

@@ -5,7 +5,7 @@ class AwesomeCalendarDialog extends StatefulWidget {
   const AwesomeCalendarDialog({
     this.initialDate,
     this.selectedDates,
-    this.canToggleRangeSelection = true,
+    this.canToggleRangeSelection = false,
     this.selectionMode = SelectionMode.SINGLE,
     this.rangeToggleText = 'Select a date range',
     this.confirmBtnText = 'OK',
@@ -71,11 +71,11 @@ class _AwesomeCalendarDialogState extends State<AwesomeCalendarDialog> {
       contentPadding: const EdgeInsets.all(0),
       content: Container(
         width: 300,
-        height: widget.canToggleRangeSelection ? 380 : 330,
+        height: widget.canToggleRangeSelection ? 375 : 320,
         child: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(bottom: 15, top: 5),
+              padding: const EdgeInsets.only(bottom: 5, top: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
