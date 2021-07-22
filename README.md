@@ -11,7 +11,7 @@ The calendar can be used with the provided AlertDialog or as a Widget embedded t
 Add to `pubspec.yaml` in `dependencies` 
 
 ```
-  awesome_calendar: ^1.0.0
+  awesome_calendar: ^1.0.1
 ```
 ## Basic usage
 
