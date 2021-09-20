@@ -1,8 +1,8 @@
 library awesome_calendar;
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:collection/collection.dart';
 
 part 'src/utils/selection_mode_enum.dart';
 part 'src/utils/calendar_helper.dart';

@@ -1,5 +1,6 @@
 part of awesome_calendar;
 
+// ignore: avoid_classes_with_only_static_members
 class CalendarHelper {
   static DateTime toMidnight(DateTime dateTime) {
     return DateTime(dateTime.year, dateTime.month, dateTime.day);

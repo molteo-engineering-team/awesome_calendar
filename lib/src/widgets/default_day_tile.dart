@@ -29,13 +29,14 @@ class DefaultDayTile extends StatelessWidget {
     BoxDecoration? boxDecoration;
     if (daySelected) {
       boxDecoration = BoxDecoration(
-        color: selectedDayColor ?? Theme.of(context).accentColor,
+        color: selectedDayColor ?? Theme.of(context).colorScheme.secondary,
         shape: BoxShape.circle,
       );
     } else if (isToday) {
       boxDecoration = BoxDecoration(
         border: Border.all(
-          color: currentDayBorderColor ?? Theme.of(context).accentColor,
+          color:
+              currentDayBorderColor ?? Theme.of(context).colorScheme.secondary,
           width: 1.0,
         ),
         shape: BoxShape.circle,
