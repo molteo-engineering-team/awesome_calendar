@@ -1,3 +1,7 @@
+## [1.1.1] - 28/09/2021
+
+* Update readme
+
 ## [1.1.0] - 28/09/2021
 
 * Add new flutter linter and fixe related warnings
