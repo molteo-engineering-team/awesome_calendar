@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (BuildContext context) {
         return const AwesomeCalendarDialog(
-          selectionMode: SelectionMode.SINGLE,
+          selectionMode: SelectionMode.single,
         );
       },
     );
@@ -124,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (BuildContext context) {
         return const AwesomeCalendarDialog(
-          selectionMode: SelectionMode.MULTI,
+          selectionMode: SelectionMode.multi,
         );
       },
     );
@@ -140,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (BuildContext context) {
         return const AwesomeCalendarDialog(
-          selectionMode: SelectionMode.RANGE,
+          selectionMode: SelectionMode.range,
         );
       },
     );
@@ -156,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (BuildContext context) {
         return const AwesomeCalendarDialog(
-          selectionMode: SelectionMode.MULTI,
+          selectionMode: SelectionMode.multi,
           canToggleRangeSelection: true,
         );
       },

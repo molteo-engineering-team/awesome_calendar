@@ -1,3 +1,3 @@
 part of awesome_calendar;
 
-enum SelectionMode { SINGLE, MULTI, RANGE }
+enum SelectionMode { single, multi, range }

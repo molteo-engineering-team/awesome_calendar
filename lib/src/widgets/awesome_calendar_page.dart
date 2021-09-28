@@ -10,7 +10,7 @@ class AwesomeCalendarPage extends StatelessWidget {
   });
 
   /// The maximum number of rows that we can have on a month
-  static const int MAX_ROWS_COUNT = 6;
+  static const int maxRowsCount = 6;
 
   /// The start date of the month to show
   final DateTime pageStartDate;
@@ -29,7 +29,7 @@ class AwesomeCalendarPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Column(
         children: buildRows(context),
         mainAxisSize: MainAxisSize.min,
@@ -52,7 +52,7 @@ class AwesomeCalendarPage extends StatelessWidget {
     );
 
     // Each row is a week
-    for (int i = 1; i < MAX_ROWS_COUNT; i++) {
+    for (int i = 1; i < maxRowsCount; i++) {
       final DateTime rowFirstDayDate =
           CalendarHelper.addDaysToDate(pageStartDate, 7 * i - startDayOffset);
       if (rowFirstDayDate.isAfter(pageEndDate)) {

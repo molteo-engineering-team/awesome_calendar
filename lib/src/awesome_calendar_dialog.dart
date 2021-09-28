@@ -6,7 +6,7 @@ class AwesomeCalendarDialog extends StatefulWidget {
     this.initialDate,
     this.selectedDates,
     this.canToggleRangeSelection = false,
-    this.selectionMode = SelectionMode.SINGLE,
+    this.selectionMode = SelectionMode.single,
     this.rangeToggleText = 'Select a date range',
     this.confirmBtnText = 'OK',
     this.cancelBtnText = 'CANCEL',
@@ -23,8 +23,8 @@ class AwesomeCalendarDialog extends StatefulWidget {
   /// It will add a toggle to activate/deactivate the range selection mode
   final bool canToggleRangeSelection;
 
-  /// [SINGLE, MULTI, RANGE]
-  /// The user can switch between MULTI and RANGE if you set [canToggleRangeSelection] to true
+  /// [single, multi, range]
+  /// The user can switch between multi and range if you set [canToggleRangeSelection] to true
   final SelectionMode selectionMode;
 
   /// Text of the range toggle if canToggleRangeSelection is true
@@ -54,7 +54,7 @@ class _AwesomeCalendarDialogState extends State<AwesomeCalendarDialog> {
   _AwesomeCalendarDialogState({
     this.currentMonth,
     this.selectedDates,
-    this.selectionMode = SelectionMode.SINGLE,
+    this.selectionMode = SelectionMode.single,
   }) {
     currentMonth ??= DateTime.now();
   }
@@ -69,7 +69,7 @@ class _AwesomeCalendarDialogState extends State<AwesomeCalendarDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       contentPadding: const EdgeInsets.all(0),
-      content: Container(
+      content: SizedBox(
         width: 300,
         height: widget.canToggleRangeSelection ? 375 : 320,
         child: Column(
@@ -116,18 +116,18 @@ class _AwesomeCalendarDialogState extends State<AwesomeCalendarDialog> {
               ),
             ),
             if (widget.canToggleRangeSelection &&
-                selectionMode != SelectionMode.SINGLE)
+                selectionMode != SelectionMode.single)
               ListTile(
                 title: Text(
                   widget.rangeToggleText,
                   style: const TextStyle(fontSize: 13),
                 ),
                 leading: Switch(
-                  value: selectionMode == SelectionMode.RANGE,
+                  value: selectionMode == SelectionMode.range,
                   onChanged: (bool value) {
                     setState(() {
                       selectionMode =
-                          value ? SelectionMode.RANGE : SelectionMode.MULTI;
+                          value ? SelectionMode.range : SelectionMode.multi;
                       selectedDates = <DateTime>[];
                       calendarStateKey.currentState!.selectedDates =
                           selectedDates;
@@ -149,7 +149,7 @@ class _AwesomeCalendarDialogState extends State<AwesomeCalendarDialog> {
             final AwesomeCalendarState? calendar =
                 calendarStateKey.currentState;
             Navigator.of(context).pop(
-              widget.selectionMode == SelectionMode.SINGLE
+              widget.selectionMode == SelectionMode.single
                   ? calendar!.selectedSingleDate
                   : calendar!.selectedDates,
             );

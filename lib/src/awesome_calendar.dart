@@ -8,7 +8,7 @@ class AwesomeCalendar extends StatefulWidget {
     this.dayTileBuilder,
     this.selectedSingleDate,
     this.selectedDates,
-    this.selectionMode = SelectionMode.SINGLE,
+    this.selectionMode = SelectionMode.single,
     this.onTap,
     this.onPageSelected,
     this.weekdayLabels,
@@ -20,7 +20,7 @@ class AwesomeCalendar extends StatefulWidget {
   /// Last date of the calendar
   final DateTime? endDate;
 
-  /// The selection mode: [SINGLE, MULTI, RANGE]
+  /// The selection mode: [single, multi, range]
   final SelectionMode selectionMode;
 
   /// The builder to create a day widget
@@ -36,10 +36,10 @@ class AwesomeCalendar extends StatefulWidget {
   final void Function(DateTime pageStartDate, DateTime pageEndDate)?
       onPageSelected;
 
-  /// The selected date in case of SINGLE selection mode
+  /// The selected date in case of single selection mode
   final DateTime? selectedSingleDate;
 
-  /// The list of selected dates in case of MULTI or RANGE selection mode
+  /// The list of selected dates in case of multi or range selection mode
   final List<DateTime>? selectedDates;
 
   /// Function to get the state of awesome_calendar
@@ -98,7 +98,7 @@ class AwesomeCalendarState extends State<AwesomeCalendar> {
       initialPage:
           selectedSingleDate != null ? _getPageForDate(selectedSingleDate!) : 0,
     );
-    return Container(
+    return SizedBox(
       height: widgetHeight,
       child: PageView.builder(
         itemBuilder: (BuildContext context, int position) {
@@ -130,13 +130,13 @@ class AwesomeCalendarState extends State<AwesomeCalendar> {
   void setSelectedDate(DateTime date) {
     setState(() {
       switch (widget.selectionMode) {
-        case SelectionMode.SINGLE:
+        case SelectionMode.single:
           selectedSingleDate = date;
           break;
-        case SelectionMode.MULTI:
+        case SelectionMode.multi:
           _setMultiSelectedDate(date);
           break;
-        case SelectionMode.RANGE:
+        case SelectionMode.range:
           _setRangeSelectedDate(date);
           break;
       }
@@ -153,7 +153,7 @@ class AwesomeCalendarState extends State<AwesomeCalendar> {
 
   /// If a given date is selected in the calendar
   bool isDateSelected(DateTime date) {
-    if (widget.selectionMode == SelectionMode.SINGLE) {
+    if (widget.selectionMode == SelectionMode.single) {
       return CalendarHelper.isSameDay(selectedSingleDate!, date);
     } else {
       final DateTime? matchedSelectedDate = selectedDates!
