@@ -1,3 +1,7 @@
+## [1.1.2] - 19/01/2022
+
+* New param `title` for the calendar dialog which allows to add any widget at the top of the dialog
+
 ## [1.1.1] - 28/09/2021
 
 * Update readme
