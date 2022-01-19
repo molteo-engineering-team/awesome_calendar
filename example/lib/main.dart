@@ -80,6 +80,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Text('Range or Multi select picker'),
               ),
               const Padding(padding: EdgeInsets.only(top: 20)),
+              ElevatedButton(
+                onPressed: () => pickerWithTitle(),
+                child: const Text('Picker with title widget'),
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
               const Text('Embedded calendar (single select):'),
               Text(embeddedCalendar.toString()),
               AwesomeCalendar(
@@ -166,6 +171,21 @@ class _MyHomePageState extends State<MyHomePage> {
         multiOrRangeSelect = picked;
       });
     }
+  }
+
+  Future<void> pickerWithTitle() async {
+    await showDialog<DateTime>(
+      context: context,
+      builder: (BuildContext context) {
+        return const AwesomeCalendarDialog(
+          selectionMode: SelectionMode.single,
+          title: Padding(
+            padding: EdgeInsets.all(16),
+            child: Text('This is a custom title'),
+          ),
+        );
+      },
+    );
   }
 }
 
