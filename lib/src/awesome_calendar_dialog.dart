@@ -11,7 +11,7 @@ class AwesomeCalendarDialog extends StatefulWidget {
     this.confirmBtnText = 'OK',
     this.cancelBtnText = 'CANCEL',
     this.dayTileBuilder,
-    this.weekdayLabels, 
+    this.weekdayLabels,
     this.title,
   });
 
@@ -40,7 +40,7 @@ class AwesomeCalendarDialog extends StatefulWidget {
   /// The builder to create a day widget
   final DayTileBuilder? dayTileBuilder;
 
-    /// A Widget that will be shown on top of the Dailog as a title
+  /// A Widget that will be shown on top of the Dailog as a title
   final Widget? title;
 
   /// The weekdays widget to show above the calendar
@@ -79,7 +79,7 @@ class _AwesomeCalendarDialogState extends State<AwesomeCalendarDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              widget.title??const SizedBox(),
+              if (widget.title != null) widget.title!,
               Padding(
                 padding: const EdgeInsets.only(bottom: 5, top: 5),
                 child: Row(
