@@ -1,3 +1,7 @@
+## [1.1.3] - 19/03/2022
+
+* New params `startDate` and `endDate` for the calendar dialog which allows to add custom date ranges (min/max)
+
 ## [1.1.2] - 19/01/2022
 
 * New param `title` for the calendar dialog which allows to add any widget at the top of the dialog
