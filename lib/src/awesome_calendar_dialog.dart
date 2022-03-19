@@ -5,6 +5,8 @@ class AwesomeCalendarDialog extends StatefulWidget {
   const AwesomeCalendarDialog({
     this.initialDate,
     this.selectedDates,
+    this.startDate,
+    this.endDate,
     this.canToggleRangeSelection = false,
     this.selectionMode = SelectionMode.single,
     this.rangeToggleText = 'Select a date range',
@@ -20,6 +22,12 @@ class AwesomeCalendarDialog extends StatefulWidget {
 
   /// The current selected dates
   final List<DateTime>? selectedDates;
+
+  /// First date of the calendar
+  final DateTime? startDate;
+
+  /// Last date of the calendar
+  final DateTime? endDate;
 
   /// It will add a toggle to activate/deactivate the range selection mode
   final bool canToggleRangeSelection;
@@ -107,8 +115,8 @@ class _AwesomeCalendarDialogState extends State<AwesomeCalendarDialog> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: AwesomeCalendar(
                   key: calendarStateKey,
-                  startDate: DateTime(2018),
-                  endDate: DateTime(2100),
+                  startDate: widget.startDate ?? DateTime(2018),
+                  endDate: widget.endDate ?? DateTime(2100),
                   selectedSingleDate: currentMonth,
                   selectedDates: selectedDates,
                   selectionMode: selectionMode,

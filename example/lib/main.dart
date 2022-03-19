@@ -85,6 +85,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Text('Picker with title widget'),
               ),
               const Padding(padding: EdgeInsets.only(top: 20)),
+              ElevatedButton(
+                onPressed: () => pickerWithCustomDateRange(),
+                child: const Text('Picker with custom date range'),
+              ),
+              const Padding(padding: EdgeInsets.only(top: 20)),
               const Text('Embedded calendar (single select):'),
               Text(embeddedCalendar.toString()),
               AwesomeCalendar(
@@ -183,6 +188,19 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: EdgeInsets.all(16),
             child: Text('This is a custom title'),
           ),
+        );
+      },
+    );
+  }
+
+  Future<void> pickerWithCustomDateRange() async {
+    await showDialog<DateTime>(
+      context: context,
+      builder: (BuildContext context) {
+        return AwesomeCalendarDialog(
+          selectionMode: SelectionMode.single,
+          startDate: DateTime(2022),
+          endDate: DateTime(2022, 12),
         );
       },
     );
