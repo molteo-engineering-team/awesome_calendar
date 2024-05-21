@@ -1,4 +1,4 @@
-part of awesome_calendar;
+part of '../../awesome_calendar.dart';
 
 class AwesomeCalendarPage extends StatelessWidget {
   const AwesomeCalendarPage({
@@ -31,8 +31,8 @@ class AwesomeCalendarPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: Column(
-        children: buildRows(context),
         mainAxisSize: MainAxisSize.min,
+        children: buildRows(context),
       ),
     );
   }
@@ -86,7 +86,7 @@ class AwesomeCalendarPage extends StatelessWidget {
         items.add(dayTile);
         currentDate = currentDate.add(const Duration(days: 1));
       } else {
-        // Adds empty spaces at the begining and end of the page if necessary
+        // Adds empty spaces at the beginning and end of the page if necessary
         items.add(
           const Expanded(
             child: Text(''),

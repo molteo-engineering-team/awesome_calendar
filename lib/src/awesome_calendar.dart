@@ -1,4 +1,4 @@
-part of awesome_calendar;
+part of '../awesome_calendar.dart';
 
 class AwesomeCalendar extends StatefulWidget {
   const AwesomeCalendar({
@@ -32,7 +32,7 @@ class AwesomeCalendar extends StatefulWidget {
   /// The function when the user clicks on a day
   final void Function(DateTime datetime)? onTap;
 
-  /// Function trigered when the current page of the calendar changes
+  /// Function triggered when the current page of the calendar changes
   final void Function(DateTime pageStartDate, DateTime pageEndDate)?
       onPageSelected;
 
@@ -235,6 +235,7 @@ class AwesomeCalendarState extends State<AwesomeCalendar> {
 
 class DateRange {
   DateRange(this.startDate, this.endDate);
+
   DateTime startDate;
   DateTime endDate;
 }

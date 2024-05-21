@@ -1,4 +1,4 @@
-part of awesome_calendar;
+part of '../awesome_calendar.dart';
 
 /// A custom date time picker that uses AwesomeCalendar
 class AwesomeCalendarDialog extends StatefulWidget {
@@ -48,14 +48,14 @@ class AwesomeCalendarDialog extends StatefulWidget {
   /// The builder to create a day widget
   final DayTileBuilder? dayTileBuilder;
 
-  /// A Widget that will be shown on top of the Dailog as a title
+  /// A Widget that will be shown on top of the Dialog as a title
   final Widget? title;
 
   /// The weekdays widget to show above the calendar
   final Widget? weekdayLabels;
 
   @override
-  _AwesomeCalendarDialogState createState() => _AwesomeCalendarDialogState(
+  State<AwesomeCalendarDialog> createState() => _AwesomeCalendarDialogState(
         currentMonth: initialDate,
         selectedDates: selectedDates,
         selectionMode: selectionMode,

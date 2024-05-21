@@ -1,4 +1,4 @@
-part of awesome_calendar;
+part of '../../awesome_calendar.dart';
 
 class DefaultDayTileBuilder extends DayTileBuilder {
   DefaultDayTileBuilder();

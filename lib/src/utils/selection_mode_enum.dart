@@ -1,3 +1,3 @@
-part of awesome_calendar;
+part of '../../awesome_calendar.dart';
 
 enum SelectionMode { single, multi, range }

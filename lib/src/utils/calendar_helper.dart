@@ -1,4 +1,4 @@
-part of awesome_calendar;
+part of '../../awesome_calendar.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class CalendarHelper {
