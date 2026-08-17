@@ -55,7 +55,7 @@ class DefaultDayTile extends StatelessWidget {
               style: TextStyle(
                 color: daySelected
                     ? Colors.white
-                    : Theme.of(context).textTheme.bodyText1!.color,
+                    : Theme.of(context).textTheme.bodyLarge?.color,
                 fontSize: 14,
               ),
             ),
